@@ -14,13 +14,13 @@
             <div class="checkboxes">
                 <input type="checkbox" id="w{{ key }}" name="w{{ key }}" value="{{ displayed[key]['movie_id'] }}">
                 <label for="w{{ key }}">Watched</label>
-    
+
                 <input type="checkbox" id="ni{{ key }}" name="ni{{ key }}" value="{{ displayed[key]['movie_id'] }}">
                 <label for="ni{{ key }}">Not Interested</label>
             </div>
-    </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Submit</button>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Submit</button>
+    </div>        
 </form>
-
 {% endblock %}

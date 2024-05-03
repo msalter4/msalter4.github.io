@@ -20,30 +20,32 @@
     <link rel="stylesheet" href="static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <!-- Jinga - Python support for web -->
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <body>
 
   <header>
-    <h2 class="logo">Scene Seeker</h2>
+    <h2 class="logo" style='font-family: Dancing Script; font-size: 50px;'>Scene Seeker</h2>
     <nav class="navigation">
       {% if user.is_authenticated %}
-        <a href="/">Home</a>
-
-        <a href="/quiz">Quizzes</a>
-
-        <a href="#" class="droptn">Profile</a>
-            <!-- <button on click = "myFunction()" class = "droptn">Profile</button> -->
-          <li><a class="droptn" href="change_username">Change Username</a></li>
-          <li><a class="droptn" href="change_password">Change Password</a></li>
-          <li><a class="droptn" href="change_email">Change Email</a></li>
-
-        <a href="/logout">Logout</a>
+        <a href="/" class="home">Home</a>
+        <a href="/quiz" class="quiz">Quizzes</a>
+        <div class="dropdown">
+          <a class="profile-button" style="color: #fff;">Profile<span class="arrow-down"></span></a>
+          <div class="dropdown-content">
+              <a href="/profile">Go to my Profile</a>
+              <a href="/change_username">Change Username</a>
+              <a href="/change_password">Change Password</a>
+              <a href="/change_email">Change Email</a>
+          </div>
+        </div>
+        <a href="/logout" class="logout">Logout</a>
         {% else %}
         <a class="btnLogin-popup" href="/login">Login</a>
-
         <a class="btnLogin-popup" href="/sign-up">Sign Up</a>
       {% endif %}
     </nav>
@@ -104,7 +106,7 @@
         <!-- {% endif %}
       </div>
     </div>
-  </nav>  -->
+  </nav> --> 
 
   {% with messages = get_flashed_messages(with_categories=true)%}
 
