@@ -1,0 +1,58 @@
+{% extends "base.html" %} 
+
+{% block title %} New Quiz {% endblock %} 
+
+{% block content %} 
+
+<div class="container mt-3 quiz-container">
+    <h1 style="align-items: center;">Welcome to the Quiz!</h1>
+
+    {% if stage == 'genre_selection' %}
+    <form method="POST" class="genre-selection-form">
+        <h2> 1. Select Genres</h2>
+        <div class="form-group3" style="color: black; margin-top: 2rem;">
+            {% for genre in genre_list %}
+            <div class="form-check genre-checkbox">
+                <input class="form-check-input" type="checkbox" name="s{{ loop.index }}" value="{{ genre }}">
+                <label class="form-check-label" for="s{{ loop.index }}">
+                    {{ genre }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Submit Genres</button>
+    </form>
+
+    {% elif stage == 'actor_display' %}
+    <h2>Actors by Selected Genres:</h2>
+    <form method="POST" class="genre-selection-form">
+        <div class="actors-by-genre">
+            {% for genre, actors in actor_list.items() %}
+            <h2>{{ genre }}</h2>
+            <div class="actor-list">
+                {% for actor in actors %}
+                <div class="form-check actor-checkbox">
+                    <input class="form-check-input" type="checkbox" name="s{{ loop.index }}" value="{{ actor }}">
+                    <label class="form-check-label" for="s{{ loop.index }}">
+                        {{ actor }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 2rem;">Submit Actors</button>
+    </form>
+    <div class="quiz-actions">
+        <a href="{{ url_for('views.reset_quiz') }}" class="btn btn-primary">Start Over</a>
+    </div>
+
+    {% elif stage == 'completion' %}
+    <p>{{ message }}</p>
+    <div class="quiz-actions">
+        <a href="{{ url_for('views.reset_quiz') }}" class="btn btn-primary">Restart Quiz</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
